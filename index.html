@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Climate Change Project</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+  :root{
+    --card: rgba(255,255,255,.08);
+    --border: rgba(255,255,255,.15);
+    --text:#f1f5f9;
+    --muted:#94a3b8;
+    --accent:#4dd0e1;
+    --accent-2:#a78bfa;
+    --radius:14px;
+    --shadow:0 8px 20px rgba(0,0,0,.4);
+  }
+
+  body{
+    margin:0;
+    font-family:Poppins, sans-serif;
+    color:var(--text);
+    background: #0b132b;
+    overflow-x:hidden;
+  }
+
+  #stars{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index:-2;
+    background:#0b132b;
+  }
+  #overlay{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:linear-gradient(135deg, rgba(11,19,43,.85) 0%, rgba(28,37,65,.85) 100%);
+    z-index:-1;
+  }
+
+  .app{ max-width:800px; margin:0 auto; padding:16px 16px 88px; }
+
+  header{text-align:center;padding:30px 10px 20px;animation:fadeIn 1s ease-out forwards;}
+  h1{ font-size:1.7rem; margin:12px 0 6px; }
+  #hook{ color:var(--muted); max-width:60ch; margin:0 auto; }
+  .pill{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.4);
+    font-size:.9rem;
+    color:var(--accent);
+    animation:slideDown 1s ease;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 16px;
+    margin:16px 0;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(6px);
+    transform:translateY(8px);
+    opacity:0;
+    animation:popIn .6s ease forwards;
+  }
+  .card h3{margin-top:0;color:var(--accent-2);}
+  ul{margin:8px 0 0 18px;}
+  li{margin:6px 0;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  nav{
+    position:fixed; bottom:12px; left:50%; transform:translateX(-50%);
+    display:flex; gap:8px; overflow-x:auto;
+    background:rgba(0,0,0,.65);
+    border:1px solid var(--border);
+    padding:8px 12px;
+    border-radius:999px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(8px);
+    max-width:90%;
+  }
+  button{
+    flex:1 0 auto;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid transparent;
+    background:none;
+    color:var(--text);
+    font-weight:600;
+    cursor:pointer;
+    transition:all .25s ease;
+  }
+  button.active{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#0b132b;
+  }
+
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  footer{text-align:center; opacity:.6; font-size:.85rem; padding:30px 0;}
+
+  @keyframes fadeIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:none;}}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-15px);}to{opacity:1;transform:none;}}
+  @keyframes popIn{to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div id="overlay"></div>
+
+<div class="app">
+  <header>
+    <div class="pill">🌎 Climate & Environment</div>
+    <h1>Climate Change Project</h1>
+    <p id="hook">Human-caused greenhouse gases are heating the planet, driving extreme weather and costs — but solutions exist if we act together.</p>
+  </header>
+
+  <nav id="menu"></nav>
+
+  <!-- Screens -->
+  <section class="screen active" id="home">
+    <div class="card">
+      <h3>Welcome</h3>
+      <p>Use the menu below to explore: Background, Why I Care, Why Others Care, Activist, What You Can Do, Skills Reflection, and Sources.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="background">
+    <div class="card"><h3>What is this issue?</h3><p>Climate change is the long-term warming of Earth’s climate system caused mainly by human greenhouse gas emissions.</p></div>
+    <div class="card"><h3>Why does it happen?</h3><p>Fossil fuels, deforestation, agriculture, and policies that still support high emissions.</p></div>
+    <div class="card"><h3>Who does it affect?</h3><p>Everyone — especially youth, low-income families, Indigenous peoples, and coastal communities.</p></div>
+    <div class="card"><h3>Where do we see it?</h3><p>In Canada: wildfires, floods, rising food prices. Globally: droughts, stronger storms, and melting ice.</p></div>
+  </section>
+
+  <section class="screen" id="mycare">
+    <div class="card"><h3>Why I Care</h3>
+      <ul>
+        <li>My generation will live with the consequences.</li>
+        <li>Smoke and heat waves already disrupt daily life.</li>
+        <li>Canada could lead in clean energy if we act now.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="screen" id="otherscare">
+    <div class="card"><h3>Why Others Should Care</h3>
+      <ul>
+        <li><b>Health:</b> smoke and heat harm lungs and hearts.</li>
+        <li><b>Money:</b> disasters and food shocks raise costs.</li>
+        <li><b>Fairness:</b> those who pollute least often suffer most.</li>
+        <li><b>Future:</b> clean energy creates safer jobs.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="screen" id="activist">
+    <div class="card"><h3>Sir David Attenborough</h3>
+      <p>Born in 1926, Attenborough is a British natural historian. Through documentaries like <i>Planet Earth</i> and <i>Our Planet</i>, he showed the world’s beauty and warned about climate change.</p>
+    </div>
+    <div class="card"><h3>Contributions</h3>
+      <ul>
+        <li>Educated millions about nature and ecosystems.</li>
+        <li>Spoke at UN climate conferences for urgent action.</li>
+        <li>Promoted solutions like reforestation and renewables.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Good Citizen</h3>
+      <p>He uses evidence and communication to push for collective action, modeling responsible citizenship.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="actions">
+    <div class="card"><h3>What You Can Do</h3>
+      <h4>Do Now</h4>
+      <ul><li>Walk, bike, or bus short trips.</li><li>Turn off unused electronics.</li><li>Eat one plant-based meal per week.</li></ul>
+      <h4>At School</h4>
+      <ul><li>Start a compost/recycling challenge.</li><li>Propose a low-waste lunch week.</li><li>Plant trees or garden.</li></ul>
+      <h4>Community</h4>
+      <ul><li>Join a cleanup or tree planting.</li><li>Write city council about green energy.</li><li>Support thrift shops and local farmers.</li></ul>
+    </div>
+  </section>
+
+  <section class="screen" id="skills">
+    <div class="card"><h3>Reflection</h3>
+      <p>I used this project to enhance my coding skills. I learned how to:</p>
+      <ul>
+        <li>Add and link multiple screens using HTML, CSS, and JavaScript.</li>
+        <li>Style cards, buttons, and backgrounds to look like a real app.</li>
+        <li>Use arrays and loops to display lists automatically.</li>
+        <li>Add animations for smoother transitions.</li>
+      </ul>
+      <p>Doing it this way made the civics project more engaging and helped me practice real coding, not just research.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="sources">
+    <div class="card"><h3>Sources</h3>
+      <ul>
+        <li><a href="https://climate.nasa.gov" target="_blank">NASA Climate Change</a></li>
+        <li><a href="https://www.ipcc.ch" target="_blank">IPCC Reports</a></li>
+        <li><a href="https://www.canada.ca/en/services/environment/weather/climatechange.html" target="_blank">Government of Canada</a></li>
+        <li><a href="https://unfccc.int" target="_blank">UNFCCC</a></li>
+        <li><a href="https://www.worldwildlife.org/initiatives/climate" target="_blank">WWF</a></li>
+        <li><a href="https://www.bbc.co.uk/programmes/b006m9ry" target="_blank">BBC – David Attenborough</a></li>
+        <li><a href="https://www.britannica.com/biography/David-Attenborough" target="_blank">Britannica – Attenborough</a></li>
+        <li><a href="https://www.ourplanet.com" target="_blank">Our Planet Project</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>© Grade 10 Civics Project – Built with HTML, CSS, and JS</footer>
+</div>
+
+<script>
+  // nav buttons
+  const pages = [
+    ["home","Home"],["background","Background"],
+    ["mycare","Why I Care"],["otherscare","Why Others Care"],
+    ["activist","Activist"],["actions","What You Can Do"],
+    ["skills","Skills Reflection"],["sources","Sources"]
+  ];
+  const menu=document.getElementById("menu");
+  pages.forEach(([id,label],i)=>{
+    const b=document.createElement("button");
+    b.textContent=label;
+    b.dataset.screen=id;
+    b.onclick=()=>show(id);
+    if(i===0) b.classList.add("active");
+    menu.appendChild(b);
+  });
+  function show(id){
+    document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+    document.querySelector(`nav button[data-screen="${id}"]`).classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  // starfield animation
+  const canvas=document.getElementById("stars");
+  const ctx=canvas.getContext("2d");
+  let stars=[];
+  function resize(){
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+    stars=Array.from({length:120},()=>({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+      r:Math.random()*1.8+0.5,
+      dx:(Math.random()-0.5)*0.2,
+      dy:(Math.random()-0.5)*0.2
+    }));
+  }
+  window.addEventListener("resize",resize);
+  resize();
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="white";
+    stars.forEach(s=>{
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fill();
+      s.x+=s.dx; s.y+=s.dy;
+      if(s.x<0||s.x>canvas.width) s.dx*=-1;
+      if(s.y<0||s.y>canvas.height) s.dy*=-1;
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+</body>
+</html>
